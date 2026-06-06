@@ -5,100 +5,135 @@ import { useLocation } from "wouter";
 import * as THREE from "three";
 import { projects } from "@/data/projects";
 
+// Face configs: position of text layer and rotation to face outward
+const FACE_CONFIGS = [
+  { pos: [0, 0, 1.01] as [number,number,number], rot: [0, 0, 0] as [number,number,number] },          // Front  (+Z)
+  { pos: [0, 0, -1.01] as [number,number,number], rot: [0, Math.PI, 0] as [number,number,number] },    // Back   (-Z)
+  { pos: [1.01, 0, 0] as [number,number,number], rot: [0, Math.PI / 2, 0] as [number,number,number] }, // Right  (+X)
+  { pos: [-1.01, 0, 0] as [number,number,number], rot: [0, -Math.PI / 2, 0] as [number,number,number] }, // Left  (-X)
+  { pos: [0, 1.01, 0] as [number,number,number], rot: [-Math.PI / 2, 0, 0] as [number,number,number] }, // Top    (+Y)
+  { pos: [0, -1.01, 0] as [number,number,number], rot: [Math.PI / 2, 0, 0] as [number,number,number] },  // Bottom (-Y)
+];
+
 export function Cube() {
   const meshRef = useRef<THREE.Mesh>(null);
   const [hovered, setHovered] = useState<number | null>(null);
   const [, setLocation] = useLocation();
 
-  // Project faces
   const cubeProjects = useMemo(() => projects.slice(0, 6), []);
-  
-  // Rotate the cube slowly, stop on hover
+
+  // Auto-rotate when idle; subtle mouse parallax
   useFrame((state, delta) => {
-    if (meshRef.current) {
-      if (hovered === null) {
-        meshRef.current.rotation.x += delta * 0.2;
-        meshRef.current.rotation.y += delta * 0.3;
-      } else {
-        // Smoothly interpolate towards the hovered face
-        meshRef.current.rotation.x = THREE.MathUtils.lerp(meshRef.current.rotation.x, 0, 0.05);
-      }
-      
-      // Subtle parallax from mouse
-      meshRef.current.position.x = THREE.MathUtils.lerp(meshRef.current.position.x, (state.pointer.x * state.viewport.width) / 10, 0.05);
-      meshRef.current.position.y = THREE.MathUtils.lerp(meshRef.current.position.y, (state.pointer.y * state.viewport.height) / 10, 0.05);
+    if (!meshRef.current) return;
+    if (hovered === null) {
+      meshRef.current.rotation.x += delta * 0.18;
+      meshRef.current.rotation.y += delta * 0.28;
+    } else {
+      meshRef.current.rotation.x = THREE.MathUtils.lerp(meshRef.current.rotation.x, 0, 0.06);
+      meshRef.current.rotation.y = THREE.MathUtils.lerp(meshRef.current.rotation.y, 0, 0.06);
     }
+    meshRef.current.position.x = THREE.MathUtils.lerp(
+      meshRef.current.position.x,
+      (state.pointer.x * state.viewport.width) / 12,
+      0.05
+    );
+    meshRef.current.position.y = THREE.MathUtils.lerp(
+      meshRef.current.position.y,
+      (state.pointer.y * state.viewport.height) / 12,
+      0.05
+    );
   });
 
   const materials = useMemo(() => {
-    return Array(6).fill(0).map((_, i) => {
-      return new THREE.MeshStandardMaterial({
-        color: hovered === i ? "#111111" : "#050505",
-        roughness: 0.2,
-        metalness: 0.8,
+    return Array(6).fill(0).map((_, i) =>
+      new THREE.MeshStandardMaterial({
+        color: hovered === i ? "#140000" : "#070707",
+        roughness: 0.15,
+        metalness: 0.85,
         emissive: hovered === i ? "#330000" : "#000000",
-      });
-    });
+        emissiveIntensity: hovered === i ? 0.4 : 0,
+      })
+    );
   }, [hovered]);
 
-  const handlePointerOver = (e: any) => {
+  const handleOver = (e: any) => {
     e.stopPropagation();
-    const materialIndex = Math.floor(e.faceIndex / 2);
-    setHovered(materialIndex);
-    document.body.style.cursor = 'pointer';
+    setHovered(Math.floor(e.faceIndex / 2));
+    document.body.style.cursor = "pointer";
   };
 
-  const handlePointerOut = () => {
+  const handleOut = () => {
     setHovered(null);
-    document.body.style.cursor = 'auto';
+    document.body.style.cursor = "auto";
   };
 
   const handleClick = (e: any) => {
     e.stopPropagation();
-    const materialIndex = Math.floor(e.faceIndex / 2);
-    if (cubeProjects[materialIndex]) {
-      setLocation(`/projects/${cubeProjects[materialIndex].id}`);
-    }
+    const idx = Math.floor(e.faceIndex / 2);
+    if (cubeProjects[idx]) setLocation(`/projects/${cubeProjects[idx].id}`);
   };
 
-  // Face positions and rotations for text
-  const textConfigs = [
-    { pos: [1.01, 0, 0], rot: [0, Math.PI / 2, 0] }, // Right
-    { pos: [-1.01, 0, 0], rot: [0, -Math.PI / 2, 0] }, // Left
-    { pos: [0, 1.01, 0], rot: [-Math.PI / 2, 0, 0] }, // Top
-    { pos: [0, -1.01, 0], rot: [Math.PI / 2, 0, 0] }, // Bottom
-    { pos: [0, 0, 1.01], rot: [0, 0, 0] }, // Front
-    { pos: [0, 0, -1.01], rot: [0, Math.PI, 0] }, // Back
-  ];
-
   return (
-    <Float speed={2} rotationIntensity={0.5} floatIntensity={1}>
+    <Float speed={1.8} rotationIntensity={0.4} floatIntensity={0.8}>
       <mesh
         ref={meshRef}
-        onPointerOver={handlePointerOver}
-        onPointerOut={handlePointerOut}
+        onPointerOver={handleOver}
+        onPointerOut={handleOut}
         onClick={handleClick}
         material={materials}
       >
         <boxGeometry args={[2, 2, 2]} />
         <Edges scale={1.0} threshold={15} color="#FF3B30" />
-        
-        {cubeProjects.map((p, i) => (
-          <Text
-            key={i}
-            position={textConfigs[i].pos as any}
-            rotation={textConfigs[i].rot as any}
-            fontSize={0.2}
-            color={hovered === i ? "#FFFFFF" : "#888888"}
-            maxWidth={1.8}
-            textAlign="center"
-            anchorX="center"
-            anchorY="middle"
-            font="https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxTOlOV.woff"
-          >
-            {p.name.toUpperCase()}
-          </Text>
-        ))}
+
+        {cubeProjects.map((p, i) => {
+          const isHov = hovered === i;
+          const techLabel = p.tech.slice(0, 3).join(" · ");
+          return (
+            <group key={i} position={FACE_CONFIGS[i].pos} rotation={FACE_CONFIGS[i].rot}>
+              {/* Project name */}
+              <Text
+                fontSize={isHov ? 0.21 : 0.18}
+                color={isHov ? "#FFFFFF" : "#666666"}
+                maxWidth={1.7}
+                textAlign="center"
+                anchorX="center"
+                anchorY="middle"
+                position={[0, 0.12, 0]}
+                font="https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxTOlOV.woff"
+              >
+                {p.name.toUpperCase()}
+              </Text>
+
+              {/* Tech tag line — only visible on hover */}
+              <Text
+                fontSize={0.1}
+                color={isHov ? "#FF3B30" : "#333333"}
+                maxWidth={1.7}
+                textAlign="center"
+                anchorX="center"
+                anchorY="middle"
+                position={[0, -0.12, 0]}
+                font="https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxTOlOV.woff"
+              >
+                {techLabel}
+              </Text>
+
+              {/* Arrow hint on hover */}
+              {isHov && (
+                <Text
+                  fontSize={0.09}
+                  color="#FF3B30"
+                  anchorX="center"
+                  anchorY="middle"
+                  position={[0, -0.38, 0]}
+                  font="https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxTOlOV.woff"
+                >
+                  CLICK TO VIEW →
+                </Text>
+              )}
+            </group>
+          );
+        })}
       </mesh>
     </Float>
   );

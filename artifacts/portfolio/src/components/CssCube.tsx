@@ -132,7 +132,7 @@ export function CssCube() {
 
             <span style={{
               fontFamily: "'JetBrains Mono', monospace",
-              fontSize: 13,
+              fontSize: 12,
               fontWeight: 500,
               color: hovered === i ? "#FFFFFF" : "#888888",
               textAlign: "center",
@@ -144,16 +144,31 @@ export function CssCube() {
             }}>
               {cubeProjects[i]?.name ?? ""}
             </span>
+            <span style={{
+              marginTop: 8,
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: 9,
+              color: hovered === i ? "#FF3B30" : "#333333",
+              textTransform: "uppercase",
+              letterSpacing: "0.15em",
+              textAlign: "center",
+              padding: "0 16px",
+              transition: "color 0.3s",
+            }}>
+              {cubeProjects[i]?.tech.slice(0, 3).join(" · ") ?? ""}
+            </span>
             {hovered === i && (
               <span style={{
-                marginTop: 8,
+                marginTop: 12,
                 fontFamily: "'Tenali Ramakrishna', sans-serif",
-                fontSize: 11,
+                fontSize: 10,
                 color: "#FF3B30",
                 textTransform: "uppercase",
                 letterSpacing: "0.2em",
+                border: "1px solid rgba(255,59,48,0.3)",
+                padding: "4px 10px",
               }}>
-                View →
+                Click to View →
               </span>
             )}
           </div>

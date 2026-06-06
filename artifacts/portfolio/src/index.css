@@ -51,6 +51,8 @@
   --color-sidebar-accent-border: var(--sidebar-accent-border);
   --color-sidebar-ring: hsl(var(--sidebar-ring));
 
+  --color-surface: hsl(var(--surface));
+
   --font-sans: var(--font-body);
   --font-serif: var(--font-subheading);
   --font-mono: var(--font-mono);
@@ -107,6 +109,8 @@
   --sidebar-accent: 0 0% 10%;
   --sidebar-accent-foreground: 0 0% 100%;
   --sidebar-ring: 2 100% 59%;
+
+  --surface: 0 0% 6%;
 
   --font-heading: 'Nothing You Could Do', cursive;
   --font-subheading: 'Allura', cursive;
