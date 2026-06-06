@@ -1,0 +1,452 @@
+Build a premium, award-winning, cinematic frontend developer portfolio inspired by high-end creative studio websites. The attached design image is ONLY for visual inspiration of layout, spacing, navbar position, dark atmosphere, and the central 3D object. Do NOT copy any text, branding, content, or exact design elements.
+
+TECH STACK:
+
+* React + Vite
+* Tailwind CSS
+* Framer Motion
+* Three.js (React Three Fiber)
+* GSAP for advanced animations
+* React Router
+* Lucide React Icons
+
+FONTS:
+
+* Main Headings: Nothing You Could Do
+* Sub Headings: Allura
+* Body Text: Tenali Ramakrishna
+* Code Blocks: JetBrains Mono
+
+THEME:
+
+* Background: #050505
+* Surface: #0E0E0E
+* Text: #FFFFFF
+* Secondary Text: #888888
+* Accent: #FF3B30
+* Border: rgba(255,255,255,0.08)
+
+GENERAL STYLE:
+
+* Extremely modern
+* Cinematic
+* Minimalist
+* Smooth animations
+* Premium feel
+* No bright gradients
+* Dark luxury aesthetic
+* Responsive on desktop, tablet, and mobile
+* Lighthouse score above 90
+
+LOADING SCREEN:
+
+Create a full-screen loading animation.
+
+Background black.
+
+Center text:
+
+"PORTFOLIO"
+
+Large cinematic typography.
+
+Animated loading bar.
+
+Fade out smoothly after assets load.
+
+MAIN NAVBAR:
+
+Fixed top navigation.
+
+Left:
+Portfolio logo.
+
+Center:
+Home
+Projects
+Skills
+Components
+About
+Contact
+
+Right:
+"Hire Me" button.
+
+Navbar becomes slightly transparent on scroll.
+
+Hover effects:
+
+* Letter spacing animation
+* Underline grows from center
+
+HOME PAGE:
+
+The home page must be extremely impressive.
+
+Layout:
+
+LEFT SIDE:
+
+Small introduction text.
+
+Heading:
+
+"FRONTEND DEVELOPER"
+
+Sub-heading:
+
+"Building modern web experiences with clean code and creative design."
+
+Short professional description.
+
+Buttons:
+
+View Projects
+
+Contact Me
+
+CENTER:
+
+Large interactive 3D cube.
+
+The cube is the centerpiece of the website.
+
+CUBE BEHAVIOR:
+
+* Slow automatic rotation
+* Mouse movement affects rotation
+* Hover pauses auto rotation
+* Click rotates selected face to front
+* Face expands smoothly
+
+Cube contains six featured projects.
+
+Face 1:
+Portfolio Website
+
+Face 2:
+Weather App
+
+Face 3:
+Todo App
+
+Face 4:
+Landing Page Collection
+
+Face 5:
+E-commerce Frontend
+
+Face 6:
+Component Library
+
+Each face shows:
+
+* Project name
+* Small preview image
+* Technologies
+* Short description
+
+When clicked:
+
+Animate into a dedicated project page.
+
+RIGHT SIDE:
+
+Massive vertical typography similar to modern agency websites.
+
+Huge text:
+
+"CREATE"
+"BUILD"
+"INNOVATE"
+
+Use dramatic oversized typography.
+
+PROJECTS PAGE:
+
+Create a dedicated project gallery.
+
+Not cards.
+
+Use a 3D rotating gallery.
+
+Projects can be filtered:
+
+All
+
+HTML
+
+CSS
+
+JavaScript
+
+Tailwind
+
+React
+
+Each project includes:
+
+Title
+
+Description
+
+Tech Stack
+
+Live Demo
+
+GitHub
+
+Screenshots
+
+Project Detail button
+
+PROJECT DETAIL PAGE:
+
+Hero image
+
+Project title
+
+Project description
+
+Technology stack
+
+Features section
+
+Gallery section
+
+Live demo button
+
+GitHub button
+
+Then create:
+
+CODE SHOWCASE SECTION
+
+This is extremely important.
+
+Display:
+
+Preview | HTML | CSS | JavaScript
+
+Tabbed interface.
+
+Code editor style appearance.
+
+Dark theme.
+
+Each code block contains:
+
+Copy button
+
+Line numbers
+
+Syntax highlighting
+
+Responsive layout
+
+COMPONENT LIBRARY PAGE:
+
+Create a special page called:
+
+"Frontend Components"
+
+Purpose:
+
+Show reusable UI components.
+
+Examples:
+
+Animated Navbar
+
+Glassmorphism Card
+
+Pricing Section
+
+Hero Section
+
+Buttons
+
+Modals
+
+Accordions
+
+Hover Cards
+
+3D Cards
+
+Each component includes:
+
+Live preview
+
+HTML code
+
+CSS code
+
+JavaScript code
+
+Copy buttons
+
+This page should feel like a mini UI library.
+
+SKILLS PAGE:
+
+Do NOT use progress bars.
+
+Instead use premium technology cards.
+
+Categories:
+
+Frontend
+
+HTML5
+
+CSS3
+
+JavaScript
+
+Tailwind CSS
+
+React
+
+Tools
+
+Git
+
+GitHub
+
+VS Code
+
+Figma
+
+Each skill card should have:
+
+Icon
+
+Name
+
+Hover animation
+
+Glow effect
+
+ABOUT PAGE:
+
+Large portrait section.
+
+Timeline layout.
+
+Professional introduction.
+
+Sections:
+
+Who I Am
+
+My Journey
+
+My Goals
+
+My Development Process
+
+Timeline animation on scroll.
+
+CONTACT PAGE:
+
+Premium contact section.
+
+Fields:
+
+Name
+
+Email
+
+Subject
+
+Message
+
+Validation included.
+
+Social links:
+
+GitHub
+
+LinkedIn
+
+Instagram
+
+Email
+
+Footer:
+
+Minimal.
+
+Dark.
+
+Animated divider.
+
+Show current year automatically.
+
+ANIMATIONS:
+
+Use Framer Motion heavily.
+
+Page transitions.
+
+Fade animations.
+
+Reveal on scroll.
+
+Parallax effects.
+
+Smooth hover interactions.
+
+Magnetic buttons.
+
+3D depth effects.
+
+CUSTOM CURSOR:
+
+Desktop only.
+
+Create premium custom cursor.
+
+Follower animation.
+
+Changes size when hovering clickable elements.
+
+PERFORMANCE:
+
+Lazy load images.
+
+Optimize Three.js rendering.
+
+Code splitting.
+
+Responsive design.
+
+Accessibility support.
+
+SEO metadata.
+
+PROJECT DATA SYSTEM:
+
+Store project information in reusable JSON structure.
+
+Easy to add new projects.
+
+No hardcoded project sections.
+
+RESPONSIVE DESIGN:
+
+Desktop:
+Full cinematic layout.
+
+Tablet:
+Adapt cube size.
+
+Mobile:
+Stack sections vertically.
+
+Cube remains interactive.
+
+FINAL GOAL:
+
+The finished website should look like a premium creative studio website combined with a modern frontend developer portfolio. The 3D cube should be the main attraction and every project should open with smooth cinematic transitions. The overall experience should feel expensive, memorable, and significantly better than a typical developer portfolio.
