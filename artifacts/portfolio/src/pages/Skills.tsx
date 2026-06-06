@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
 import { 
-  SiHtml5, SiCss3, SiJavascript, SiTailwindcss, SiReact, 
-  SiGit, SiGithub, SiVisualstudiocode, SiFigma 
+  SiHtml5, SiCss, SiJavascript, SiTailwindcss, SiReact, 
+  SiGit, SiGithub, SiVscodium, SiFigma 
 } from "react-icons/si";
 
 const frontendSkills = [
   { name: "HTML5", icon: SiHtml5, color: "#E34F26" },
-  { name: "CSS3", icon: SiCss3, color: "#1572B6" },
+  { name: "CSS3", icon: SiCss, color: "#1572B6" },
   { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
   { name: "Tailwind CSS", icon: SiTailwindcss, color: "#38B2AC" },
   { name: "React", icon: SiReact, color: "#61DAFB" },
@@ -15,7 +15,7 @@ const frontendSkills = [
 const toolsSkills = [
   { name: "Git", icon: SiGit, color: "#F05032" },
   { name: "GitHub", icon: SiGithub, color: "#FFFFFF" },
-  { name: "VS Code", icon: SiVisualstudiocode, color: "#007ACC" },
+  { name: "VS Code", icon: SiVscodium, color: "#007ACC" },
   { name: "Figma", icon: SiFigma, color: "#F24E1E" },
 ];
 

@@ -2,22 +2,18 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export function LoadingScreen() {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(
+    () => !sessionStorage.getItem("portfolio_loaded")
+  );
 
   useEffect(() => {
-    const hasLoaded = sessionStorage.getItem("portfolio_loaded");
-    if (hasLoaded) {
-      setIsVisible(false);
-      return;
-    }
-
+    if (!isVisible) return;
     const timer = setTimeout(() => {
       setIsVisible(false);
       sessionStorage.setItem("portfolio_loaded", "true");
     }, 2500);
-
     return () => clearTimeout(timer);
-  }, []);
+  }, [isVisible]);
 
   return (
     <AnimatePresence>
