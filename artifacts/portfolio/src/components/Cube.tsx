@@ -99,12 +99,11 @@ export function Cube() {
                 anchorX="center"
                 anchorY="middle"
                 position={[0, 0.12, 0]}
-                font="https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxTOlOV.woff"
               >
                 {p.name.toUpperCase()}
               </Text>
 
-              {/* Tech tag line — only visible on hover */}
+              {/* Tech tag line */}
               <Text
                 fontSize={0.1}
                 color={isHov ? "#FF3B30" : "#333333"}
@@ -113,7 +112,6 @@ export function Cube() {
                 anchorX="center"
                 anchorY="middle"
                 position={[0, -0.12, 0]}
-                font="https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxTOlOV.woff"
               >
                 {techLabel}
               </Text>
@@ -126,9 +124,8 @@ export function Cube() {
                   anchorX="center"
                   anchorY="middle"
                   position={[0, -0.38, 0]}
-                  font="https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxTOlOV.woff"
                 >
-                  CLICK TO VIEW →
+                  CLICK TO VIEW
                 </Text>
               )}
             </group>

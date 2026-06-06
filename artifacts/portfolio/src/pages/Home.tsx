@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, Suspense } from "react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { Canvas } from "@react-three/fiber";
@@ -78,11 +78,13 @@ export default function Home() {
       <div className="w-full h-[50vh] md:h-auto md:w-1/3 absolute md:relative inset-0 md:inset-auto z-0 opacity-40 md:opacity-100 flex items-center justify-center pointer-events-none md:pointer-events-auto">
         <div className="w-full h-[600px] flex items-center justify-center cursor-grab active:cursor-grabbing">
           {webglAvailable ? (
-            <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
-              <ambientLight intensity={0.5} />
-              <pointLight position={[10, 10, 10]} intensity={1} />
-              <Cube />
-            </Canvas>
+            <Suspense fallback={<CssCube />}>
+              <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
+                <ambientLight intensity={0.5} />
+                <pointLight position={[10, 10, 10]} intensity={1} />
+                <Cube />
+              </Canvas>
+            </Suspense>
           ) : (
             <CssCube />
           )}
