@@ -3,6 +3,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Layout } from "@/components/Layout";
+import { AdminAuthProvider } from "@/contexts/AdminAuthContext";
+import { ProtectedRoute } from "@/components/admin/ProtectedRoute";
+import { AdminLayout } from "@/components/admin/AdminLayout";
 import Home from "@/pages/Home";
 import Projects from "@/pages/Projects";
 import ProjectDetail from "@/pages/ProjectDetail";
@@ -11,10 +14,18 @@ import Components from "@/pages/Components";
 import About from "@/pages/About";
 import Contact from "@/pages/Contact";
 import NotFound from "@/pages/not-found";
+import AdminLogin from "@/pages/admin/AdminLogin";
+import AdminDashboard from "@/pages/admin/AdminDashboard";
+import AdminProjects from "@/pages/admin/AdminProjects";
+import AdminComponents from "@/pages/admin/AdminComponents";
+import AdminAbout from "@/pages/admin/AdminAbout";
+import AdminMessages from "@/pages/admin/AdminMessages";
+import AdminMedia from "@/pages/admin/AdminMedia";
+import AdminSettings from "@/pages/admin/AdminSettings";
 
 const queryClient = new QueryClient();
 
-function Router() {
+function PortfolioRouter() {
   return (
     <Layout>
       <Switch>
@@ -31,14 +42,115 @@ function Router() {
   );
 }
 
+function AdminRouter() {
+  return (
+    <Switch>
+      <Route path="/admin/login" component={AdminLogin} />
+      <Route path="/admin">
+        {() => (
+          <ProtectedRoute>
+            <AdminLayout>
+              <AdminDashboard />
+            </AdminLayout>
+          </ProtectedRoute>
+        )}
+      </Route>
+      <Route path="/admin/projects">
+        {() => (
+          <ProtectedRoute>
+            <AdminLayout>
+              <AdminProjects />
+            </AdminLayout>
+          </ProtectedRoute>
+        )}
+      </Route>
+      <Route path="/admin/components">
+        {() => (
+          <ProtectedRoute>
+            <AdminLayout>
+              <AdminComponents />
+            </AdminLayout>
+          </ProtectedRoute>
+        )}
+      </Route>
+      <Route path="/admin/about">
+        {() => (
+          <ProtectedRoute>
+            <AdminLayout>
+              <AdminAbout />
+            </AdminLayout>
+          </ProtectedRoute>
+        )}
+      </Route>
+      <Route path="/admin/messages">
+        {() => (
+          <ProtectedRoute>
+            <AdminLayout>
+              <AdminMessages />
+            </AdminLayout>
+          </ProtectedRoute>
+        )}
+      </Route>
+      <Route path="/admin/media">
+        {() => (
+          <ProtectedRoute>
+            <AdminLayout>
+              <AdminMedia />
+            </AdminLayout>
+          </ProtectedRoute>
+        )}
+      </Route>
+      <Route path="/admin/settings">
+        {() => (
+          <ProtectedRoute>
+            <AdminLayout>
+              <AdminSettings />
+            </AdminLayout>
+          </ProtectedRoute>
+        )}
+      </Route>
+    </Switch>
+  );
+}
+
+function Router() {
+  return (
+    <Switch>
+      <Route path="/admin/login" component={AdminLogin} />
+      <Route path="/admin/:rest*">
+        {() => (
+          <ProtectedRoute>
+            <AdminLayout>
+              <Switch>
+                <Route path="/admin" component={AdminDashboard} />
+                <Route path="/admin/projects" component={AdminProjects} />
+                <Route path="/admin/components" component={AdminComponents} />
+                <Route path="/admin/about" component={AdminAbout} />
+                <Route path="/admin/messages" component={AdminMessages} />
+                <Route path="/admin/media" component={AdminMedia} />
+                <Route path="/admin/settings" component={AdminSettings} />
+              </Switch>
+            </AdminLayout>
+          </ProtectedRoute>
+        )}
+      </Route>
+      <Route>
+        <PortfolioRouter />
+      </Route>
+    </Switch>
+  );
+}
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
-          <Router />
-        </WouterRouter>
-        <Toaster />
+        <AdminAuthProvider>
+          <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+            <Router />
+          </WouterRouter>
+          <Toaster />
+        </AdminAuthProvider>
       </TooltipProvider>
     </QueryClientProvider>
   );
