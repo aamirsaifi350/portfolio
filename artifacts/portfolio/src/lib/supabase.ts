@@ -1,16 +1,31 @@
-import { createClient } from "@supabase/supabase-js";
+import { createClient, SupabaseClient } from "@supabase/supabase-js";
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string;
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string;
+let _supabase: SupabaseClient | null = null;
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  console.warn("Supabase env vars missing — admin features will not work until VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY are set.");
+function getClient(): SupabaseClient {
+  if (_supabase) return _supabase;
+
+  const url = import.meta.env.VITE_SUPABASE_URL as string | undefined;
+  const key = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined;
+
+  if (!url || !key) {
+    console.warn("Supabase credentials not found. Using offline mode — admin will not connect to database.");
+    _supabase = createClient(
+      "https://placeholder.supabase.co",
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBsYWNlaG9sZGVyIiwicm9sZSI6ImFub24iLCJpYXQiOjE2MDAwMDAwMDAsImV4cCI6MTkxNTYzMDQwMH0.placeholder"
+    );
+    return _supabase;
+  }
+
+  _supabase = createClient(url, key, { auth: { persistSession: true } });
+  return _supabase;
 }
 
-export const supabase = createClient(
-  supabaseUrl ?? "https://placeholder.supabase.co",
-  supabaseAnonKey ?? "placeholder"
-);
+export const supabase = new Proxy({} as SupabaseClient, {
+  get(_target, prop) {
+    return (getClient() as unknown as Record<string | symbol, unknown>)[prop];
+  },
+});
 
 export type Project = {
   id: string;
