@@ -42,7 +42,7 @@ export default function Home() {
       >
         <div className="space-y-1">
           <p className="font-subheading text-secondary text-2xl">Hello I'm</p>
-          <h2 className="font-subheading text-4xl text-foreground">Your Name</h2>
+          <h2 className="font-subheading text-4xl text-foreground">Aamir Saifi</h2>
         </div>
         
         <h1 className="font-heading text-6xl md:text-7xl leading-tight">
