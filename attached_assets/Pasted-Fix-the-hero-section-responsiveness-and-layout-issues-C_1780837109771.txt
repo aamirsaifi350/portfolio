@@ -1,0 +1,90 @@
+Fix the hero section responsiveness and layout issues.
+
+Current Problems:
+
+1. The large "CREATE BUILD INNOVATE" text is overflowing outside the viewport on smaller screens.
+2. The 3D project cube overlaps with the left content.
+3. Hero elements compete for space and become unreadable.
+4. The layout breaks when the browser width decreases.
+5. Large typography is not scaling properly.
+
+Requirements:
+
+* Make the hero section fully responsive.
+* Keep the cinematic design.
+* Never allow any text to leave the viewport.
+* Never allow horizontal scrolling.
+* The words "CREATE", "BUILD", and "INNOVATE" must always remain fully visible.
+* Use CSS clamp() for responsive typography.
+* Use overflow-hidden where appropriate.
+* Scale text based on screen width.
+
+Layout:
+
+Desktop:
+
+* Left column = Introduction content
+* Center column = Interactive 3D cube
+* Right column = Large background typography
+
+Tablet:
+
+* Reduce cube size
+* Reduce typography size
+* Maintain three-column feel if possible
+
+Mobile:
+
+* Stack sections vertically
+* Intro first
+* Cube second
+* Typography third
+* No overlapping elements
+
+Typography:
+
+Replace fixed font sizes with responsive values.
+
+Example:
+font-size: clamp(3rem, 8vw, 10rem);
+
+The large background words should be decorative only:
+
+* Opacity between 0.08 and 0.15
+* Responsive scaling
+* Must never dominate the layout
+
+Cube:
+
+* Keep cube centered
+* Prevent overlap with text
+* Scale cube based on viewport size
+* Maintain aspect ratio
+
+Container:
+
+Use a responsive grid layout instead of absolute positioning.
+
+Example structure:
+
+Left:
+Introduction
+
+Center:
+3D Cube
+
+Right:
+CREATE
+BUILD
+INNOVATE
+
+Performance:
+
+* No layout shifts
+* No overflow issues
+* No horizontal scrollbar
+* Smooth scaling on all screen sizes
+
+Final Goal:
+
+Create a premium cinematic hero section where the content, cube, and typography remain perfectly balanced and fully visible across desktop, tablet, and mobile screens.
