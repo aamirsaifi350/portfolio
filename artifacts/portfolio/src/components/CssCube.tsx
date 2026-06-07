@@ -145,7 +145,7 @@ export function CssCube() {
               {cubeProjects[i]?.name ?? ""}
             </span>
             <span style={{
-              marginTop: 8,
+              marginTop: 20,
               fontFamily: "'JetBrains Mono', monospace",
               fontSize: 9,
               color: hovered === i ? "#FF3B30" : "#333333",
