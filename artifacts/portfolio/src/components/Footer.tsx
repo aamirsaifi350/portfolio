@@ -10,7 +10,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           <div className="col-span-1 md:col-span-2">
             <Link href="/" className="text-3xl font-heading tracking-widest flex items-baseline mb-4">
-              PORTFOLIO<span className="text-accent">.</span>
+              AAMIR<span className="text-accent">.</span>SAIFI
             </Link>
             <p className="text-muted-foreground text-sm max-w-sm">
               Building premium digital experiences with modern web technologies, precise code, and creative design.
@@ -48,7 +48,7 @@ export function Footer() {
         
         <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between">
           <p className="text-muted-foreground text-xs">
-            © {currentYear} Your Name. All rights reserved.
+            © {currentYear} Aamir Saifi. All rights reserved.
           </p>
           <div className="w-full md:w-auto mt-4 md:mt-0 flex justify-center">
             <div className="h-[1px] w-24 bg-gradient-to-r from-transparent via-accent to-transparent"></div>

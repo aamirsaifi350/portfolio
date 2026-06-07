@@ -31,7 +31,7 @@ export function LoadingScreen() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-6xl md:text-8xl font-heading text-foreground mb-8 tracking-widest uppercase"
           >
-            PORTFOLIO
+            AAMIR.SAIFI
           </motion.h1>
           
           <div className="w-64 h-1 bg-surface rounded-full overflow-hidden">

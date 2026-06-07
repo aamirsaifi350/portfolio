@@ -12,7 +12,7 @@ function NavbarPreview() {
   return (
     <div style={{ background: "rgba(5,5,5,0.9)", backdropFilter: "blur(12px)", border: "1px solid rgba(255,255,255,0.06)", padding: "1rem 1.5rem", display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%" }}>
       <span style={{ fontWeight: 700, letterSpacing: "0.15em", fontSize: 14, textTransform: "uppercase" }}>
-        PORTFOLIO<span style={{ color: "#FF3B30" }}>.</span>
+        AAMIR<span style={{ color: "#FF3B30" }}>.</span>SAIFI
       </span>
       <div style={{ display: "flex", gap: 20 }}>
         {["Home","About","Work","Contact"].map(l => (

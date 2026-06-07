@@ -33,7 +33,7 @@ export function Navbar() {
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         <Link href="/" className="text-2xl font-heading tracking-widest flex items-baseline">
-          PORTFOLIO<span className="text-accent text-3xl leading-none">.</span>
+          AAMIR<span className="text-accent text-3xl leading-none">.</span>SAIFI
         </Link>
 
         {/* Desktop Nav */}
