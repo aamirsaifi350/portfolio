@@ -117,23 +117,77 @@ function Router() {
   return (
     <Switch>
       <Route path="/admin/login" component={AdminLogin} />
-      <Route path="/admin/:rest*">
+
+      <Route path="/admin">
         {() => (
           <ProtectedRoute>
             <AdminLayout>
-              <Switch>
-                <Route path="/admin" component={AdminDashboard} />
-                <Route path="/admin/projects" component={AdminProjects} />
-                <Route path="/admin/components" component={AdminComponents} />
-                <Route path="/admin/about" component={AdminAbout} />
-                <Route path="/admin/messages" component={AdminMessages} />
-                <Route path="/admin/media" component={AdminMedia} />
-                <Route path="/admin/settings" component={AdminSettings} />
-              </Switch>
+              <AdminDashboard />
             </AdminLayout>
           </ProtectedRoute>
         )}
       </Route>
+
+      <Route path="/admin/projects">
+        {() => (
+          <ProtectedRoute>
+            <AdminLayout>
+              <AdminProjects />
+            </AdminLayout>
+          </ProtectedRoute>
+        )}
+      </Route>
+
+      <Route path="/admin/components">
+        {() => (
+          <ProtectedRoute>
+            <AdminLayout>
+              <AdminComponents />
+            </AdminLayout>
+          </ProtectedRoute>
+        )}
+      </Route>
+
+      <Route path="/admin/about">
+        {() => (
+          <ProtectedRoute>
+            <AdminLayout>
+              <AdminAbout />
+            </AdminLayout>
+          </ProtectedRoute>
+        )}
+      </Route>
+
+      <Route path="/admin/messages">
+        {() => (
+          <ProtectedRoute>
+            <AdminLayout>
+              <AdminMessages />
+            </AdminLayout>
+          </ProtectedRoute>
+        )}
+      </Route>
+
+      <Route path="/admin/media">
+        {() => (
+          <ProtectedRoute>
+            <AdminLayout>
+              <AdminMedia />
+            </AdminLayout>
+          </ProtectedRoute>
+        )}
+      </Route>
+
+      <Route path="/admin/settings">
+        {() => (
+          <ProtectedRoute>
+            <AdminLayout>
+              <AdminSettings />
+            </AdminLayout>
+          </ProtectedRoute>
+        )}
+      </Route>
+
       <Route>
         <PortfolioRouter />
       </Route>
