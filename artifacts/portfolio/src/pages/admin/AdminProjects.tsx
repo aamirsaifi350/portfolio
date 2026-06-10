@@ -235,10 +235,24 @@ export default function AdminProjects() {
                   <span className="text-xs text-gray-600 uppercase tracking-wider">{p.category}</span>
                   <span className="text-gray-700">·</span>
                   <div className="flex gap-1.5">
-                    {p.tech.slice(0, 3).map(t => (
-                      <span key={t} className="text-xs px-1.5 py-0.5 rounded" style={{ background: "rgba(0,255,157,0.06)", color: "#00FF9D" }}>{t}</span>
-                    ))}
-                    {p.tech.length > 3 && <span className="text-xs text-gray-600">+{p.tech.length - 3}</span>}
+                    {(Array.isArray(p.tech)
+  ? p.tech
+  : String(p.tech || "")
+      .split(",")
+      .map(t => t.trim())
+      .filter(Boolean)
+).slice(0, 3).map(t => (
+  <span
+    key={t}
+    className="text-xs px-1.5 py-0.5 rounded"
+    style={{
+      background: "rgba(0,255,157,0.06)",
+      color: "#00FF9D"
+    }}
+  >
+    {t}
+  </span>
+))}
                   </div>
                 </div>
               </div>
